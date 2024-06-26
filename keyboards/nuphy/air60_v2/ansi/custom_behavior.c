@@ -36,7 +36,7 @@ uint16_t PRESSED_CUSTOM_KEYS[10];
 uint32_t timeMouse = 0 ;
 uint32_t timeMouseLED = 0 ;
 uint16_t MouseJigglerInterval = 1000;
-bool MouseJigglerEnabled = false;
+bool g_MouseJigglerEnabled = false;
 bool MouseJigglerLED = false;
 
 
@@ -68,7 +68,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max)
             }
         }
     }
-    if (MouseJigglerEnabled)
+    if (g_MouseJigglerEnabled)
     {
         if (timer_elapsed(timeMouseLED) > 500) 
         {
@@ -78,18 +78,16 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max)
         if (MouseJigglerLED)
         {
             rgb_matrix_set_color(6, RGB_RED);   //NUM 6
-            rgb_matrix_set_color(58, RGB_RED);  //SPACE
         }
         else{
             rgb_matrix_set_color(6, RGB_OFF);   //NUM 6
-            rgb_matrix_set_color(58, RGB_OFF);  //SPACE
         }
     }
     return false;
 }
 
 void matrix_scan_user(void) {
-    if (MouseJigglerEnabled && timer_elapsed(timeMouse) >= MouseJigglerInterval)
+    if (g_MouseJigglerEnabled && timer_elapsed(timeMouse) >= MouseJigglerInterval)
     {
         timeMouse = timer_read();
         uint16_t random =rand();
@@ -167,8 +165,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case MOUS_JIG:
             if (record->event.pressed)
             {
-                MouseJigglerEnabled ^= 1;
-                user_config.sleep_mode =  (MouseJigglerEnabled ? 0 : 1);
+                g_MouseJigglerEnabled ^= 1;
+                user_config.sleep_mode =  (g_MouseJigglerEnabled ? 0 : 1);
                 timeMouse = timer_read();
                 timeMouseLED = timer_read();
             }

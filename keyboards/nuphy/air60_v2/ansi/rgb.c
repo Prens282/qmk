@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "rgb_table.h"
 #include "mcu_pwr.h"
 #include "is31fl3733.h"
+#include "custom_behavior.h"
 
 /* side rgb mode */
 enum {
@@ -284,19 +285,26 @@ void sys_led_show(void) {
     current_rgb.g = SIDE_BLINK_LIGHT;
     current_rgb.b = SIDE_BLINK_LIGHT;
     current_rgb.r = 0x00;
-    uint8_t led_side = LEFT_SIDE;
 
     if (host_keyboard_led_state().caps_lock) {
-        led_side = RIGHT_SIDE;
         set_side_rgb(LEFT_SIDE + SYS_MARK, current_rgb.r, current_rgb.g, current_rgb.b);
     }
 
-    if (user_config.numlock_state != 1) { return; }
-
-    if (host_keyboard_led_state().num_lock) {
+    //PRENS_CUSTOM: Mouse jiggler shown on sidelights
+    if(g_MouseJigglerEnabled){
+        current_rgb.b = 0x00;
         current_rgb.r = SIDE_BLINK_LIGHT;
-        set_side_rgb(led_side + SYS_MARK, current_rgb.r, current_rgb.g, current_rgb.b);
+        set_side_rgb(RIGHT_SIDE + SYS_MARK, current_rgb.r, current_rgb.g, current_rgb.b);
     }
+
+
+    // PRENS_CUSTOM: NO NUMLOCK NECCESARY ON A 60% KB
+    // if (user_config.numlock_state != 1) { return; }
+
+    // if (host_keyboard_led_state().num_lock) {
+    //     current_rgb.r = SIDE_BLINK_LIGHT;
+    //     set_side_rgb(led_side + SYS_MARK, current_rgb.r, current_rgb.g, current_rgb.b);
+    // }
 }
 
 /**
@@ -548,7 +556,7 @@ void bat_num_led(void) {
     if (bat_percent % 10 == 0) { bat_pct--; }
 
     for(uint8_t i=0; i < bat_pct; i++) {
-        rgb_matrix_set_color(20 + i, r, g, b);
+        rgb_matrix_set_color(1 + i, r, g, b);
     }
     // set percent
 
@@ -562,7 +570,7 @@ void bat_num_led(void) {
         r = 0x00; g = 0xff; b = 0x00;
     }
 
-    rgb_matrix_set_color(20 + bat_pct, r, g, b);
+    rgb_matrix_set_color(1 + bat_pct, r, g, b);
 
 }
 

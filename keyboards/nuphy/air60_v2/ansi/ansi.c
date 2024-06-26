@@ -327,19 +327,19 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
-       case RGB_SAD:
+        case RGB_SAD:
             if (record->event.pressed) {
                 rgb_matrix_decrease_sat_noeeprom();
             }
             return false;
 
-       case RGB_M_P:
+        case RGB_M_P:
             if (record->event.pressed) {
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
             }
             return false;
 
-       case RGB_TOG:
+        case RGB_TOG:
             if (record->event.pressed) {
                 rgb_matrix_toggle_noeeprom();
             }
@@ -405,11 +405,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 wait_ms(100);
             } else {
-                if (user_config.sleep_mode == 0) { return true; }
-                else {
-                    f_goto_sleep = 1;
-                    f_goto_deepsleep  = 1;
-                }
+                f_goto_sleep = 1;
+                f_goto_deepsleep  = 1;
             }
             return true;
 

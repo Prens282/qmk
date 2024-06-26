@@ -33,3 +33,6 @@ enum TD_Keys{
     TD_U,
     TD_UU
 };
+
+// GLOBAL VARIABLES
+extern bool g_MouseJigglerEnabled;

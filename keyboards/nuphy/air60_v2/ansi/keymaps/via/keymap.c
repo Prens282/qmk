@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include QMK_KEYBOARD_H
+#include "custom_behavior.h"
 
 enum layers{
     MAC_BASE,
@@ -23,8 +24,7 @@ enum layers{
     MAC_FN_SFT,
     WIN_BASE,
     WIN_FN,
-    WIN_FN_SFT,
-    M_LAYER
+    WIN_FN_SFT
 };
 
 
@@ -32,27 +32,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // layer 0 Mac
 [MAC_BASE] = LAYOUT_60_ansi(
-	KC_ESC, 	KC_1,   	KC_2,   	KC_3,  		KC_4,   	KC_5,   	KC_6,   	KC_7,   	KC_8,   	KC_9,  		KC_0,   	KC_MINS,	KC_EQL, 	KC_BSPC,
-	KC_TAB, 	KC_Q,   	KC_W,   	KC_E,  		KC_R,   	KC_T,   	KC_Y,   	KC_U,   	KC_I,   	KC_O,  		KC_P,   	KC_LBRC,	KC_RBRC, 	KC_BSLS,
-	KC_CAPS,	KC_A,   	KC_S,   	KC_D,  		KC_F,   	KC_G,   	KC_H,   	KC_J,   	KC_K,   	KC_L,  		KC_SCLN,	KC_QUOT, 	            KC_ENT,
-	KC_LSFT,	KC_Z,   	KC_X,   	KC_C,  		KC_V,   	KC_B,   	KC_N,   	KC_M,   	KC_COMM,	KC_DOT,		KC_SLSH,	KC_RSFT,	KC_UP,		KC_DEL,
-	KC_LCTL,	KC_LALT,	KC_LGUI,										KC_SPC, 							KC_RGUI,	MO(1),   	KC_LEFT,	KC_DOWN,    KC_RGHT),
+	KC_ESC, 	CKC_1,   	CKC_2,   	CKC_3,  	CKC_4,   	KC_5,   	CKC_6,   	CKC_7,   	CKC_8,   	CKC_9,  	CKC_0,   	CKC_MINS,	CKC_EQL, 	KC_BSPC,
+	KC_TAB, 	KC_Q,   	KC_W,   	TD(TD_E),	KC_R,   	KC_T,   	KC_Y,   	TD(TD_U),  	TD(TD_I),  	TD(TD_O),	KC_P,   	CKC_LBRC,	CKC_RBRC, 	CKC_BSLS,
+	KC_CAPS,	TD(TD_A),  	KC_S,   	KC_D,  		KC_F,   	KC_G,   	KC_H,   	KC_J,   	KC_K,   	KC_L,  		CKC_SCLN,	CKC_QUOT, 	            KC_ENT,
+	KC_LSFT,	KC_Z,   	KC_X,   	KC_C,  		KC_V,   	KC_B,   	KC_N,   	KC_M,   	CKC_COMM,	CKC_DOT,	CKC_SLSH,	KC_RSFT,	KC_UP,		KC_RSFT,
+	KC_LCTL,	KC_LGUI,	KC_LALT,										KC_SPC, 							TT(1),	    KC_RALT,   	KC_LEFT,	KC_DOWN,    KC_RGHT),
 
 // layer 1 Mac fn
 [MAC_FN] = LAYOUT_60_ansi(
-	KC_GRV, 	KC_BRID,  	KC_BRIU,  	TASK, 	    SEARCH,     MAC_VOICE,  MAC_DND,  	KC_MPRV,  	KC_MPLY,  	KC_MNXT, 	KC_MUTE, 	KC_VOLD, 	KC_VOLU, 	_______,
-	_______, 	LNK_BLE1,  	LNK_BLE2,  	LNK_BLE3,  	LNK_RF,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	DEV_RESET,	SLEEP_MODE, BAT_SHOW,
-	_______, 	_______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	            _______,
-	MO(2),	    _______,   	_______,   	_______,  	_______,   	_______,   	_______,   	MO(6),   	RGB_SPD,	RGB_SPI,  	_______,	MO(2),  	RGB_VAI,    _______,
-	_______,	_______,	_______,										_______, 							_______,	_______,   	RGB_MOD,	RGB_VAD,    RGB_HUI),
+	CKC_GRV, 	KC_BRID,  	KC_BRIU,  	KC_CALC, 	KC_PSCR,    KC_F5,      MOUS_JIG,  	KC_MPRV,  	KC_MPLY,  	KC_MNXT, 	KC_MUTE, 	KC_VOLD, 	KC_VOLU, 	KC_DEL,
+	_______, 	LNK_BLE1,  	LNK_BLE2,  	LNK_BLE3,  	LNK_RF,   	_______,    _______,   	TD(TD_UU), 	_______,   	TD(TD_OO),	_______,   	SIDE_VAD,	SIDE_VAI,   SIDE_HUI,
+	_______, 	_______,   	_______,    _______,  	_______,   	_______,    _______,   	_______,   	_______,   	SLEEP_NOW,  _______,   	_______,                _______,
+	_______,	_______,   	_______,   	_______,  	_______,   	_______,    _______,   	_______,   	_______,	_______,  	_______,	MO(2),  	KC_PGUP,    _______,
+	_______,	_______,	_______,										_______, 							TG(1),	    _______,   	KC_HOME,    KC_PGDN,    KC_END),
 
 // layer 2 Mac Fn+shift
 [MAC_FN_SFT] = LAYOUT_60_ansi(
-	_______, 	KC_F1,  	KC_F2,  	KC_F3, 		KC_F4,  	KC_F5,  	KC_F6,  	KC_F7,  	KC_F8,  	KC_F9, 		KC_F10, 	KC_F11, 	KC_F12, 	_______,
-	_______, 	_______,  	_______,  	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	_______,    _______,
-	_______, 	_______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	            _______,
-	_______,	_______,   	_______,   	RGB_TEST,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,	_______, 	_______,    _______,
-	_______,	_______,	_______,										_______, 							_______,	_______,   	_______,	_______,    _______),
+	DEV_RESET, 	KC_F1,  	KC_F2,  	KC_F3, 		KC_F4,  	KC_F5,  	KC_F6,  	KC_F7,  	KC_F8,  	KC_F9, 		KC_F10, 	KC_F11, 	KC_F12, 	SIDE_1,
+	_______, 	_______,  	_______,  	_______,  	_______,    RGB_TEST,   _______,   	_______,   	_______,   	_______,  	_______,   	_______,	_______,    _______,
+	_______, 	_______,   	SLEEP_MODE, _______,  	_______,   	GAME_MODE,  _______,   	_______,   	_______,   	_______,  	_______,   	_______,	            PW_DPLY,
+	_______,	_______,   	_______,    _______,  	_______,   	BAT_SHOW,   BAT_NUM,   	SIDE_MOD,   SIDE_SPD,   SIDE_SPI,  	_______,	_______, 	RGB_VAI,    _______,
+	_______,	_______,	_______,										_______, 							_______,	_______,   	RGB_MOD,	RGB_VAD,    RGB_HUI),
 
 // layer 3 Win
 [WIN_BASE] = LAYOUT_60_ansi(
@@ -64,28 +64,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // layer 4 win fn
 [WIN_FN] = LAYOUT_60_ansi(
-	KC_GRV, 	   KC_F1,  	KC_F2,  	KC_F3, 		KC_F4,  	KC_F5,  	KC_F6,  	KC_F7,  	KC_F8,  	KC_F9, 		KC_F10, 	KC_F11, 	KC_F12, 	_______,
+	KC_GRV, 	KC_F1,  	KC_F2,  	KC_F3, 		KC_F4,  	KC_F5,  	KC_F6,  	KC_F7,  	KC_F8,  	KC_F9, 		KC_F10, 	KC_F11, 	KC_F12, 	_______,
 	_______, 	LNK_BLE1,  	LNK_BLE2,  	LNK_BLE3,  	LNK_RF,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	DEV_RESET,	SLEEP_MODE, BAT_SHOW,
 	_______, 	_______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	            _______,
-	MO(5),	   _______,   	_______,   	_______,  	_______,   	_______,   	_______,   	MO(6),   	RGB_SPD,	RGB_SPI,  	_______,	MO(5),  	RGB_VAI,    _______,
+	MO(5),	    _______,   	_______,   	_______,  	_______,   	_______,   	_______,   	MO(6),   	RGB_SPD,	RGB_SPI,  	_______,	MO(5),  	RGB_VAI,    _______,
 	_______,	_______,	_______,										_______, 							_______,	_______,   	RGB_MOD,	RGB_VAD,    RGB_HUI),
 
 // layer 5 win fn+shift
 [WIN_FN_SFT] = LAYOUT_60_ansi(
 	_______, 	KC_BRID,   	KC_BRIU,    _______,  	_______,   	_______,   	_______,   	KC_MPRV,   	KC_MPLY,   	KC_MNXT,  	KC_MUTE, 	KC_VOLD, 	KC_VOLU, 	_______,
-	_______, 	_______,  	_______,  	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	   _______,    _______,
+	_______, 	_______,  	_______,  	_______, 	_______,  	_______,  	_______,  	_______,  	_______,  	_______, 	_______, 	_______, 	_______, 	_______,
 	_______, 	_______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	            _______,
-	_______,	_______,   	_______,   	RGB_TEST,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,	   _______, 	_______,    _______,
-	_______,	_______,	_______,										_______, 							_______,	_______,   	_______,	   _______,    _______),
-
-// layer 6 function
-[M_LAYER] = LAYOUT_60_ansi(
-	QK_REBOOT, 	DB_TOGG,  	RF_DFU,  	_______, 	_______,  	_______,  	   _______,  	_______,  	_______,  	_______, 	_______, 	_______, 	_______, 	_______,
-	_______, 	_______,  	_______,  	_______, 	_______,  	_______,  	   _______,  	_______,  	_______,  	_______, 	_______, 	_______, 	SLEEP_NOW, 	_______,
-	CAPS_WORD, 	_______,   	_______,   	_______,  	GAME_MODE,  _______,   	   _______,   	_______,   	_______,   	_______,  	_______,   	_______,	            _______,
-	_______,    _______,   	_______,   	_______,  	_______,   	NUMLOCK_IND,   _______,   	_______,   	SIDE_SPD,	SIDE_SPI,  	_______,	_______,  	SIDE_VAI,    _______,
-	_______,	WIN_LOCK,	_______,										_______, 							_______,	_______,   	SIDE_MOD,	SIDE_VAD,    SIDE_HUI)
+	_______,    _______,   	_______,   	RGB_TEST,  	_______,   	_______,   	_______,   	_______,   	SIDE_SPD,	SIDE_SPI,  	_______,	_______,  	SIDE_VAI,    _______,
+	_______,	_______,	_______,										_______, 							_______,	_______,   	SIDE_MOD,	SIDE_VAD,    SIDE_HUI)
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const is31fl3733_led_t PROGMEM g_is31fl3733_leds[RGB_MATRIX_LED_COUNT] = {
     {0, A_16,   B_16,   C_16},      // "Esc"
