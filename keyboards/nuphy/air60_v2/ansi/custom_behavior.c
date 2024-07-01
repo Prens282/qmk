@@ -85,6 +85,13 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max)
     }
     return false;
 }
+void housekeeping_task_user(void) {
+    if(g_MouseJigglerEnabled && ((dev_info.rf_state != RF_CONNECT) && (dev_info.link_mode != 4)) && !USB_ACTIVE)
+    {
+        g_MouseJigglerEnabled = 0;
+        user_config.sleep_mode = 1;
+    }
+}
 
 void matrix_scan_user(void) {
     if (g_MouseJigglerEnabled && timer_elapsed(timeMouse) >= MouseJigglerInterval)
@@ -593,14 +600,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                     unregister_code(ACTIVE_SHIFT);
                     register_code(KC_RALT);
                     register_code(KC_B);
-                    ALTGR_NEEDED = true;
                     SHIFT_KEY(CKC_LBRC);
+                    ALTGR_NEEDED = true;
                 }
                 else
                 {
-                    register_code(KC_RALT);
-                    register_code(KC_F);
-                    ALTGR_NEEDED = true;
+                    register_code(KC_LSFT);
+                    register_code(KC_8);
+                    SHIFT_NEEDED = true;
                 }
             }
             else
@@ -614,8 +621,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 } 
                 else
                 {
-                    unregister_code(KC_F);
-                    ALTGR_NEEDED = false;
+                    unregister_code(KC_8);
+                    SHIFT_NEEDED = false;
                 }
             }
             retVal = false;
@@ -635,9 +642,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 }
                 else
                 {
-                    register_code(KC_RALT);
-                    register_code(KC_G);
-                    ALTGR_NEEDED = true;
+                    register_code(KC_LSFT);
+                    register_code(KC_9);
+                    SHIFT_NEEDED = true;
                 }
             }
             else
@@ -648,11 +655,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                     register_code(ACTIVE_SHIFT);
                     CLEAR_MOD_ON_KEY(CKC_RBRC);
                     ALTGR_NEEDED = false;
-                }
+                } 
                 else
                 {
-                    unregister_code(KC_G);
-                    ALTGR_NEEDED = false;
+                    unregister_code(KC_9);
+                    SHIFT_NEEDED = false;
                 }
             }
             retVal = false;
@@ -672,9 +679,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 } 
                 else
                 {
-                    register_code(KC_RALT);                                  
-                    register_code(KC_Q);
-                    ALTGR_NEEDED = true;
+                    register_code(KC_LSFT);
+                    register_code(KC_6);
+                    SHIFT_NEEDED = true;
                 }
             }
             else
@@ -687,8 +694,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 }
                 else
                 {
-                    unregister_code(KC_Q);
-                    ALTGR_NEEDED = false;
+                    unregister_code(KC_6);
+                    SHIFT_NEEDED = false;
                 }
             }
             retVal = false;
@@ -854,6 +861,62 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                     unregister_code(KC_6);
                     SHIFT_NEEDED = false;
                 }
+            }
+            retVal = false;
+            break;
+        case FN_LBRC:
+            if (record->event.pressed)
+            {
+                register_code(KC_RALT);
+                register_code(KC_F);
+                ALTGR_NEEDED = true;
+            }
+            else
+            {
+                unregister_code(KC_F);
+                ALTGR_NEEDED = false;
+            }
+            retVal = false;
+            break;
+        case FN_RBRC:
+            if (record->event.pressed)
+            {
+                register_code(KC_RALT);
+                register_code(KC_G);
+                ALTGR_NEEDED = true;
+            }
+            else
+            {
+                unregister_code(KC_G);
+                ALTGR_NEEDED = false;
+            }
+            retVal = false;
+            break;
+        case FN_BSLS:
+            if (record->event.pressed)
+            {
+                register_code(KC_RALT);
+                register_code(KC_Q);
+                ALTGR_NEEDED = true;
+            }
+            else
+            {
+                unregister_code(KC_Q);
+                ALTGR_NEEDED = false;
+            }
+            retVal = false;
+            break;
+        case FN_SLSH:
+            if (record->event.pressed)
+            {
+                register_code(KC_RSFT);
+                register_code(KC_SLSH);
+                SHIFT_NEEDED = true;
+            }
+            else
+            {
+                unregister_code(KC_SLSH);
+                SHIFT_NEEDED = false;
             }
             retVal = false;
             break;

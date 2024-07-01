@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "user_kb.h"
+#include "custom_behavior.h"
 #include "ansi.h"
 #include "mcu_pwr.h"
 
@@ -405,6 +406,11 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 wait_ms(100);
             } else {
+                if(g_MouseJigglerEnabled)
+                {
+                    g_MouseJigglerEnabled = false;
+                    user_config.sleep_mode = 1;
+                }
                 f_goto_sleep = 1;
                 f_goto_deepsleep  = 1;
             }

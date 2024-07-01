@@ -14,6 +14,7 @@ enum custom_keycodes_user{
 	CKC_LBRC, CKC_RBRC, CKC_BSLS,																		//ROW 4 - Last 3 keys
 	CKC_SCLN, CKC_QUOT,																				//ROW 3 - last 2 keys
 	CKC_COMM, CKC_DOT, CKC_SLSH,																		//ROW 2 - last 3 keys
+    FN_LBRC, FN_RBRC,FN_BSLS, FN_SLSH,                                                                  // Custom idea to add altgr keys to an another layer
 
     //DO NOT PUT ANYTHING AFTER THIS
     LAST_CUSTOM_KEY
