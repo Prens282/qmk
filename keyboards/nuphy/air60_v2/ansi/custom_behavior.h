@@ -22,6 +22,7 @@ enum custom_keycodes_user{
 
 enum custom_macros_user{
     MOUS_JIG = LAST_CUSTOM_KEY,																		// Mouse jiggler 
+    SLEEP_ALL,
     PW_DPLY,                                                                                        // Password deploy
 };
 

@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [MAC_FN] = LAYOUT_60_ansi(
 	CKC_GRV, 	KC_BRID,  	KC_BRIU,  	KC_CALC, 	KC_PSCR,    KC_F5,      MOUS_JIG,  	KC_MPRV,  	KC_MPLY,  	KC_MNXT, 	KC_MUTE, 	KC_VOLD, 	KC_VOLU, 	KC_DEL,
 	_______, 	LNK_BLE1,  	LNK_BLE2,  	LNK_BLE3,  	LNK_RF,   	_______,    _______,   	TD(TD_UU), 	_______,   	TD(TD_OO),	_______,   	FN_LBRC,	FN_RBRC, 	FN_BSLS,
-	_______, 	_______,   	_______,    _______,  	_______,   	_______,    _______,   	_______,   	_______,   	SLEEP_NOW,  _______,   	_______,                _______,
+	_______, 	_______,   	_______,    _______,  	_______,   	_______,    _______,   	_______,   	_______,   	SLEEP_ALL,  _______,   	_______,                _______,
 	_______,	_______,   	_______,   	_______,  	_______,   	_______,    _______,   	SIDE_HUI,   SIDE_VAD,	SIDE_VAI,  	FN_SLSH,	_______,  	KC_PGUP,    _______,
 	_______,	_______,	_______,										_______, 							_______,    MO(2),   	KC_HOME,    KC_PGDN,    KC_END),
 
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [MAC_FN_ALT] = LAYOUT_60_ansi(
 	DEV_RESET, 	KC_F1,  	KC_F2,  	KC_F3, 		KC_F4,  	KC_F5,  	KC_F6,  	KC_F7,  	KC_F8,  	KC_F9, 		KC_F10, 	KC_F11, 	KC_F12, 	SIDE_1,
 	_______, 	_______,  	_______,  	_______,  	_______,    RGB_TEST,   _______,   	_______,   	_______,   	_______,  	_______,   	_______,	_______,    _______,
-	_______, 	_______,   	SLEEP_MODE, _______,  	_______,   	GAME_MODE,  _______,   	_______,   	_______,   	_______,  	_______,   	_______,	            PW_DPLY,
+	_______, 	_______,   	SLEEP_MODE, _______,  	_______,   	GAME_MODE,  _______,   	_______,   	_______,   	SLEEP_NOW,  _______,   	_______,	            PW_DPLY,
 	_______,	_______,   	_______,    _______,  	_______,   	BAT_SHOW,   BAT_NUM,   	SIDE_MOD,   SIDE_SPD,   SIDE_SPI,  	_______,	_______, 	RGB_VAI,    _______,
 	_______,	_______,	_______,										_______, 							_______,	_______,   	RGB_MOD,	RGB_VAD,    RGB_HUI),
 

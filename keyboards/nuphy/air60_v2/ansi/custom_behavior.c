@@ -180,6 +180,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             retVal = false;
             break;
 
+        case SLEEP_ALL:
+            if (USB_ACTIVE)
+            {    if (record->event.pressed) {
+                    wait_ms(100);
+                } else {
+                    if(g_MouseJigglerEnabled)
+                    {
+                        g_MouseJigglerEnabled = false;
+                        user_config.sleep_mode = 1;
+                    }
+                    SEND_STRING(SS_RGUI("l"));
+                    f_goto_sleep = 1;
+                    f_goto_deepsleep  = 1;
+                }
+            }
+            else if (!record->event.pressed) {
+                SEND_STRING(SS_RGUI("l"));
+            }
+            retVal = false;
+            break;
+
         case PW_DPLY:
             if (record->event.pressed)
             {
