@@ -43,16 +43,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______,  _______),
 
 [WIN_BASE] = LAYOUT_tkl_ansi(
-     KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,             KC_PSCR,   KC_CTANA, RGB_MOD,
-     CKC_GRV,  CKC_1,    CKC_2,    CKC_3,    CKC_4,    KC_5,     CKC_6,    CKC_7,    CKC_8,    CKC_9,    CKC_0,    CKC_MINS, CKC_EQL,  KC_BSPC,  KC_INS,    KC_HOME,  KC_PGUP,
-     KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     CKC_LBRC, CKC_RBRC, CKC_BSLS, KC_DEL,    KC_END,   KC_PGDN,
-     KC_CAPS,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     CKC_SCLN, CKC_QUOT,           KC_ENT,
+     KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,             KC_PSCR,   BAT_LVL, RGB_MOD,
+     KC_GRV,   CKC_1,    CKC_2,    CKC_3,    CKC_4,    KC_5,     CKC_6,    CKC_7,    CKC_8,    CKC_9,    CKC_0,    CKC_MINS, CKC_EQL,  KC_BSPC,  KC_INS,    KC_HOME,  KC_PGUP,
+     KC_TAB,   KC_Q,     KC_W,     TD(TD_E), KC_R,     KC_T,     KC_Y,     TD(TD_U), TD(TD_I), TD(TD_O), KC_P,     CKC_LBRC, CKC_RBRC, CKC_BSLS, KC_DEL,    KC_END,   KC_PGDN,
+     KC_CAPS,  TD(TD_A), KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     CKC_SCLN, CKC_QUOT,           KC_ENT,
      KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     CKC_COMM, CKC_DOT,  CKC_SLSH,           KC_RSFT,             KC_UP,
-     KC_LCTL,  KC_LGUI,  KC_LALT,                                KC_SPC,                                 MO(WIN_FN),KC_RGUI, KC_RALT,KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
+     KC_LCTL,  KC_LGUI,  KC_LALT,                                KC_SPC,                                 MO(WIN_FN),KC_RALT, KC_RGUI,KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
 
 [WIN_FN] = LAYOUT_tkl_ansi(
-     RGB_TOG,  KC_BRID,  KC_BRIU,  KC_TASK,  KC_FILE,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,            _______,  _______,  RGB_TOG,
-     _______,  BT_HST1,  BT_HST2,  BT_HST3,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_DEL,   _______,  _______,  _______,
+     RGB_TOG,  KC_BRID,  KC_BRIU,  KC_TASK,  KC_FILE,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,            _______,  PW_DPLY,  RGB_TOG,
+     CKC_GRV,  BT_HST1,  BT_HST2,  BT_HST3,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_DEL,   _______,  _______,  _______,
      _______,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  TD(TD_UU),_______,  TD(TD_OO),_______,  FN_LBRC,  FN_RBRC,  FN_BSLS,  _______,  _______,  _______,
      _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
      _______,            _______,  _______,  _______,  _______,  BAT_LVL,  _______,  _______,  _______,  _______,  FN_SLSH,            _______,            KC_PGUP,
